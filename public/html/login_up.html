@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>đăng kí</title>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <form>
+        <p>
+            Name <input type="text" name="name" id="name" placeholder="name">
+        </p>
+        <p>
+            codes <input type="text" name="codes" id="codes" placeholder="mã số">
+        </p>
+        <p>
+            year <input type="text" name="year" id="year" placeholder="năm sinh">
+        </p>
+        <p>
+            phone <input type="text" name="phone" id="phone" placeholder="sđt"> 
+        </p>
+        <p>
+            school <input type="text" name="school" id="school" placeholder="trường học">
+
+        </p>
+        <button type="button" id="btn"> đăng kí</button>
+    </form>
+</body>
+<script>
+    $('#btn').click(function(){
+        var name = $('#name').val()
+        var codes = $('#codes').val()
+        var year = $('#year').val()
+        var phone = $('#phone').val()
+        var school = $('#school').val()
+        $.ajax({
+            url:'/user/post',
+            method:'POST',
+            data:{
+                name: name,
+                codes: codes,
+                year:year,
+                phone:phone,
+                school:school
+            }
+        })
+        .then((data) => {
+            if(data.orror){
+                alert(data.massage)
+            }
+        }).catch((err) => {
+            
+        });
+    })
+</script>
+</html>
